@@ -7,26 +7,51 @@ import org.junit.Test;
 public class CalculadoraSalarioTest {
 
     @Test
-    public void testCalculaSalarioDesenvolvedor() {
-        Funcionario desenvolvedor = new Funcionario("João", "joao@example.com", 3500.00, Cargo.DESENVOLVEDOR);
-        assertEquals(3150.00, CalculadoraSalario.calculaSalario(desenvolvedor), 0.01);
+    public void testCalculaSalarioDesenvolvedorLimiteSuperior() {
+        Funcionario desenvolvedor = new Funcionario("João", "joao@example.com", 3000.00, Cargo.DESENVOLVEDOR);
+        assertEquals(2700.00, CalculadoraSalario.calculaSalario(desenvolvedor), 0.01);
     }
 
     @Test
-    public void testCalculaSalarioDBA() {
-        Funcionario dba = new Funcionario("Maria", "maria@example.com", 2200.00, Cargo.DBA);
-        assertEquals(1870.00, CalculadoraSalario.calculaSalario(dba), 0.01);
+    public void testCalculaSalarioDesenvolvedorLimiteInferior() {
+        Funcionario desenvolvedor = new Funcionario("Maria", "maria@example.com", 2999.99, Cargo.DESENVOLVEDOR);
+        assertEquals(2699.99, CalculadoraSalario.calculaSalario(desenvolvedor), 0.01);
     }
 
     @Test
-    public void testCalculaSalarioTestador() {
-        Funcionario testador = new Funcionario("Pedro", "pedro@example.com", 1500.00, Cargo.TESTADOR);
-        assertEquals(1275.00, CalculadoraSalario.calculaSalario(testador), 0.01);
+    public void testCalculaSalarioDBALimiteSuperior() {
+        Funcionario dba = new Funcionario("Pedro", "pedro@example.com", 2000.00, Cargo.DBA);
+        assertEquals(1700.00, CalculadoraSalario.calculaSalario(dba), 0.01);
     }
 
     @Test
-    public void testCalculaSalarioGerente() {
-        Funcionario gerente = new Funcionario("Ana", "ana@example.com", 6000.00, Cargo.GERENTE);
-        assertEquals(4200.00, CalculadoraSalario.calculaSalario(gerente), 0.01);
+    public void testCalculaSalarioDBALimiteInferior() {
+        Funcionario dba = new Funcionario("Ana", "ana@example.com", 1999.99, Cargo.DBA);
+        assertEquals(1699.99, CalculadoraSalario.calculaSalario(dba), 0.01);
     }
+
+    @Test
+    public void testCalculaSalarioTestadorLimiteSuperior() {
+        Funcionario testador = new Funcionario("Carlos", "carlos@example.com", 2000.00, Cargo.TESTADOR);
+        assertEquals(1700.00, CalculadoraSalario.calculaSalario(testador), 0.01);
+    }
+
+    @Test
+    public void testCalculaSalarioTestadorLimiteInferior() {
+        Funcionario testador = new Funcionario("Paula", "paula@example.com", 1999.99, Cargo.TESTADOR);
+        assertEquals(1699.99, CalculadoraSalario.calculaSalario(testador), 0.01);
+    }
+
+    @Test
+    public void testCalculaSalarioGerenteLimiteSuperior() {
+        Funcionario gerente = new Funcionario("Carlos", "carlos@example.com", 5000.00, Cargo.GERENTE);
+        assertEquals(3500.00, CalculadoraSalario.calculaSalario(gerente), 0.01);
+    }
+
+    @Test
+    public void testCalculaSalarioGerenteLimiteInferior() {
+        Funcionario gerente = new Funcionario("Paula", "paula@example.com", 4999.99, Cargo.GERENTE);
+        assertEquals(3499.99, CalculadoraSalario.calculaSalario(gerente), 0.01);
+    }
+
 }
